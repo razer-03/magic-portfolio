@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Column, Media, Row, Avatar, Text } from "@once-ui-system/core";
+import { Card, Column, Media, Row, Avatar, Text, Tag } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
 import { person } from "@/resources";
 
@@ -18,10 +18,10 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
       href={`/blog/${post.slug}`}
       transition="micro-medium"
       direction={direction}
-      border="transparent"
-      background="transparent"
-      padding="4"
-      radius="l-4"
+      border="neutral-alpha-weak"
+      background="surface"
+      padding="20"
+      radius="l"
       gap={direction === "column" ? undefined : "24"}
       s={{ direction: "column" }}
     >
@@ -31,33 +31,48 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
           sizes="(max-width: 768px) 100vw, 640px"
           border="neutral-alpha-weak"
           cursor="interactive"
-          radius="l"
+          radius="m"
           src={post.metadata.image}
           alt={"Thumbnail of " + post.metadata.title}
           aspectRatio="16 / 9"
         />
       )}
-      <Row fillWidth>
-        <Column maxWidth={28} paddingY="24" paddingX="l" gap="20" vertical="center">
-          <Row gap="24" vertical="center">
-            <Row vertical="center" gap="16">
-              <Avatar src={person.avatar} size="s" />
-              <Text variant="label-default-s">{person.name}</Text>
-            </Row>
-            <Text variant="body-default-xs" onBackground="neutral-weak">
-              {formatDate(post.metadata.publishedAt, false)}
+      <Column fillWidth paddingY="8" gap="20">
+        {/* Tag */}
+        {post.metadata.tag && (
+          <Tag 
+            variant="brand" 
+            size="s"
+          >
+            {post.metadata.tag}
+          </Tag>
+        )}
+        
+        {/* Title */}
+        <Text variant="heading-strong-l" wrap="balance">
+          {post.metadata.title}
+        </Text>
+        
+        {/* Summary */}
+        {post.metadata.summary && (
+          <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+            {post.metadata.summary}
+          </Text>
+        )}
+        
+        {/* Author and Date */}
+        <Row gap="16" vertical="center" wrap>
+          <Row vertical="center" gap="12">
+            <Avatar src={person.avatar} size="xs" />
+            <Text variant="label-default-s" onBackground="neutral-medium">
+              {person.name}
             </Text>
           </Row>
-          <Text variant="heading-strong-l" wrap="balance">
-            {post.metadata.title}
+          <Text variant="body-default-xs" onBackground="neutral-weak">
+            {formatDate(post.metadata.publishedAt, false)}
           </Text>
-          {post.metadata.tag && (
-            <Text variant="label-strong-s" onBackground="neutral-weak">
-              {post.metadata.tag}
-            </Text>
-          )}
-        </Column>
-      </Row>
+        </Row>
+      </Column>
     </Card>
   );
 }

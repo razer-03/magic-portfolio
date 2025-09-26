@@ -222,6 +222,12 @@ export interface Blog extends BasePageConfig {}
 export interface Work extends BasePageConfig {}
 
 /**
+ * Content Map page configuration.
+ * @description Configuration for the interactive Content Map page, showing blog post connections and relationships.
+ */
+export interface ContentMap extends BasePageConfig {}
+
+/**
  * Gallery page configuration.
  * @description Configuration for the Gallery page, including metadata, navigation label, and image list.
  */
