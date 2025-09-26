@@ -8,5 +8,7 @@ export { Providers } from "@/components/Providers";
 export { ScrollToHash } from "@/components/ScrollToHash";
 export { ThemeToggle } from "@/components/ThemeToggle";
 export { CustomMDX } from "@/components/mdx";
-export { BlogIndex } from "@/components/blog/BlogIndex";
-export { BlogTableOfContents, BlogNavigation } from "@/components/blog/BlogNavigation";
+
+// Blog components
+export { BlogIndex } from "./blog/BlogIndex";
+export { BlogTableOfContents, BlogNavigation } from "./blog/BlogNavigation";

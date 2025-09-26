@@ -1,0 +1,88 @@
+---
+title: "Machine Learning for Catalyst Discovery"
+summary: "Using quantum chemical calculations and machine learning to accelerate catalyst design for sustainable chemistry."
+image: "/images/projects/project-01/cover-02.jpg"
+publishedAt: "2024-09-20"
+tag: "machine-learning"
+---
+
+## Project Overview
+
+This project combines quantum chemistry with machine learning to predict catalyst activity for sustainable chemistry applications, focusing on CO₂ reduction and nitrogen activation.
+
+## Motivation
+
+Traditional catalyst discovery is slow and expensive. Our approach leverages computational methods to:
+
+- Generate large datasets of catalyst properties
+- Train ML models to predict activity
+- Screen thousands of candidates rapidly
+- Identify promising new catalysts
+
+## Methodology
+
+### Dataset Generation
+
+We use DFT calculations to compute properties for transition metal catalysts:
+
+- Binding energies for substrate molecules
+- Activation barriers for key reaction steps  
+- Electronic properties and descriptors
+- Thermodynamic stability measures
+
+**Computational Protocol:**
+- Functional: M06 (optimized for transition metals)
+- Basis set: def2-TZVP
+- Solvent: Implicit solvation (THF/toluene)
+- Dispersion: D3 corrections included
+
+### Machine Learning Pipeline
+
+**Feature Engineering:**
+- Electronic descriptors (HOMO-LUMO gaps, charges)
+- Geometric descriptors (bond lengths, angles)
+- Chemical descriptors (Sterimol parameters, buried volume)
+
+**Model Architecture:**
+- Graph Convolutional Networks (GCN) for molecular structure
+- Gradient boosting for tabular descriptors
+- Ensemble methods for improved accuracy
+
+## Results
+
+### Dataset Statistics
+- 12,500 catalyst structures across 8 metals
+- 4 target properties per catalyst
+- 50,000 total calculations performed
+
+### Model Performance
+- **Binding Energy**: R² = 0.89, MAE = 2.4 kcal/mol
+- **Activation Barrier**: R² = 0.82, MAE = 3.1 kcal/mol
+- **Selectivity**: Classification accuracy = 87%
+
+### Discovery Acceleration
+- Traditional screening: weeks per catalyst
+- ML prediction: seconds per catalyst  
+- 100,000× speedup in candidate evaluation
+
+## Key Discoveries
+
+1. **Ligand Design Rules**: Identified optimal electron-donating groups for CO₂ activation
+2. **Metal Selection**: Copper-based complexes show unexpected high activity
+3. **Geometric Constraints**: Bite angle strongly correlates with selectivity
+
+## Impact
+
+- 3 new catalyst candidates synthesized and tested
+- 15% improvement in CO₂ conversion efficiency
+- 2 patent applications filed
+- Open-source dataset released for community use
+
+## Future Directions
+
+- Expand to other catalytic reactions
+- Include solvent effects in ML models
+- Develop active learning strategies
+- Integrate with experimental high-throughput screening
+
+This work demonstrates how ML can transform catalyst discovery from serendipity to systematic design.

@@ -1,0 +1,44 @@
+---
+title: "The Obara-Saika Method: Making Quantum Chemistry Faster"
+summary: "How a clever mathematical trick makes quantum chemistry calculations 10x faster."
+publishedAt: "2025-01-15"
+tag: "Computational Methods"
+---
+
+## The Problem
+
+Quantum chemistry calculations need to compute millions of integrals. These calculations were painfully slow until 1986, when Obara and Saika found a better way.
+
+## What They Discovered
+
+Instead of calculating each integral from scratch, the Obara-Saika method uses **recursion** - it calculates complex integrals by building them up from simpler ones.
+
+Think of it like this: Instead of calculating 100 × 97 directly, you might calculate:
+- 100 × 90 = 9000
+- 100 × 7 = 700  
+- Add them: 9000 + 700 = 9700
+
+The Obara-Saika method does something similar but with quantum mechanical integrals.
+
+## Why It Matters
+
+**Speed improvement**: Up to 10× faster than old methods
+**Universal adoption**: Used in all major quantum chemistry software (Gaussian, ORCA, Q-Chem)
+**Enables modern research**: Made large-scale quantum chemistry possible
+
+## Real Impact
+
+Before Obara-Saika: Calculating a medium-sized molecule took days
+After Obara-Saika: Same calculation takes hours
+
+This breakthrough enabled:
+- Drug discovery calculations
+- Materials design
+- Catalyst development
+- Climate modeling
+
+## The Bottom Line
+
+The Obara-Saika method is invisible to most users, but it powers nearly every quantum chemistry calculation today. It's a perfect example of how mathematical innovation enables scientific discovery.
+
+*Every time you see results from Gaussian or ORCA, you're benefiting from this 1986 breakthrough.*

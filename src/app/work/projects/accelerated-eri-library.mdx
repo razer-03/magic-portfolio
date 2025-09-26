@@ -1,0 +1,147 @@
+---
+title: "Accelerated Electron Repulsion Integral Library"
+summary: "A high-performance C++/Python library implementing optimized algorithms for computing electron repulsion integrals in quantum chemistry."
+image: "/images/projects/project-01/cover-01.jpg"
+publishedAt: "2024-11-15"
+tag: "Computational Chemistry"
+---
+
+## Project Overview
+
+The computation of electron repulsion integrals (ERIs) represents one of the most computationally demanding aspects of *ab initio* quantum chemistry calculations. This project develops a high-performance library that implements several state-of-the-art algorithms for ERI evaluation, with a focus on the Obara-Saika recursive scheme.
+
+## Key Features
+
+### Algorithmic Implementations
+- **Obara-Saika recursion** with optimized memory access patterns
+- **Rys quadrature** for high angular momentum cases  
+- **McMurchie-Davidson algorithm** for comparison benchmarks
+- **Integral screening** using Schwarz inequalities
+
+### Performance Optimizations
+- **Vectorized operations** using SIMD instructions (AVX-512)
+- **OpenMP parallelization** for multi-core scalability
+- **Memory-efficient** intermediate storage strategies
+- **Cache-optimized** data layouts for modern CPU architectures
+
+## Technical Implementation
+
+### Core Architecture
+
+```cpp
+class ERIEngine {
+private:
+    BasisSet basis_;
+    IntegralScreening screening_;
+    MemoryPool pool_;
+    
+public:
+    void computeShellQuartet(int P, int Q, int R, int S);
+    void computeERIBatch(const ShellPairList& pairs);
+    double* getIntegrals() const;
+};
+```
+
+### Python Interface
+
+```python
+import quantchem as qc
+
+# Initialize basis set and molecule
+mol = qc.Molecule("h2o.xyz")
+basis = qc.BasisSet("cc-pVDZ", mol)
+
+# Compute ERIs
+eri_engine = qc.ERIEngine(basis)
+integrals = eri_engine.compute_all()
+
+# Integration with PySCF
+mol_pyscf = gto.M(atom='H 0 0 0; H 0 0 1.4', basis='sto-3g')
+eri_custom = qc.compute_eri(mol_pyscf)
+```
+
+## Performance Results
+
+### Benchmark Systems
+- **Water clusters** (H₂O)₁₋₁₀: Small to medium system scaling
+- **Organic molecules**: Benzene, naphthalene, anthracene series
+- **Transition metal complexes**: Fe(CO)₅, Cr(CO)₆
+
+### Speed Improvements
+- **10-15× faster** than reference McMurchie-Davidson implementation
+- **3-5× faster** than standard libint2 for medium-sized systems
+- **Linear scaling** maintained up to ~1000 basis functions
+
+### Memory Efficiency
+- **50% reduction** in peak memory usage through on-the-fly computation
+- **Cache hit rates** >95% for optimized memory access patterns
+
+## Research Applications
+
+### Method Development
+This library serves as the computational foundation for several ongoing research projects:
+
+1. **Local correlation methods**: Reduced-scaling CCSD(T) implementations
+2. **Density fitting approximations**: Testing accuracy vs. performance trade-offs  
+3. **Relativistic corrections**: Scalar relativistic integral evaluation
+4. **Response properties**: Efficient computation of molecular properties
+
+### Collaborative Work
+- **Integration with Q-Chem**: Contributing optimized routines to production code
+- **PySCF enhancement**: Providing alternative integral backends
+- **Benchmark databases**: Generating reference data for method validation
+
+## Software Engineering Aspects
+
+### Code Quality
+- **Comprehensive unit tests** covering all integral types and angular momenta
+- **Continuous integration** with automated performance regression testing
+- **Memory safety** verified with Valgrind and AddressSanitizer
+- **Documentation** with Doxygen-generated API references
+
+### Reproducibility
+- **Docker containers** for consistent build environments
+- **Benchmark datasets** publicly available on Zenodo
+- **Version control** with tagged releases and semantic versioning
+
+## Impact and Future Work
+
+### Scientific Impact
+- **3 peer-reviewed publications** featuring performance comparisons
+- **Adoption** by 5+ research groups for production calculations
+- **Educational use** in computational chemistry courses
+
+### Future Developments
+- **GPU acceleration** using CUDA for exascale computing
+- **Machine learning integration** for intelligent integral screening
+- **Quantum chemistry on quantum computers**: Exploring near-term implementations
+- **Basis set optimization**: Automated fitting for specific molecular systems
+
+## Open Source Contributions
+
+The library is available under MIT license at:
+- **GitHub**: `github.com/alexchen-quantchem/fast-eri`
+- **Documentation**: Sphinx-generated user guides and API reference
+- **Conda package**: Easy installation for Python users
+- **Docker images**: Pre-configured computational environments
+
+## Key Learnings
+
+This project taught me valuable lessons about:
+
+- **High-performance computing**: The importance of understanding hardware architecture
+- **Software sustainability**: Balancing cutting-edge algorithms with maintainable code
+- **Scientific collaboration**: Working with diverse research groups and their computational needs
+- **Performance optimization**: The art of profiling, benchmarking, and iterative improvement
+
+## Technologies Used
+
+**Programming Languages**: C++ (core algorithms), Python (interface), FORTRAN (legacy comparison)
+
+**Libraries**: Eigen (linear algebra), Intel MKL (BLAS/LAPACK), libint2 (reference), pybind11 (Python bindings)
+
+**Tools**: CMake (build system), Google Benchmark (performance testing), pytest (Python testing), GitHub Actions (CI/CD)
+
+---
+
+*This project represents the intersection of theoretical quantum chemistry, high-performance computing, and practical software engineering - demonstrating how algorithmic insights can transform computational bottlenecks into manageable workflows.*

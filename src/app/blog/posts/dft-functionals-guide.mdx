@@ -1,0 +1,68 @@
+---
+title: "DFT Functionals: A Practical Guide"
+summary: "A practical guide to selecting the right DFT functional for quantum chemistry calculations."
+publishedAt: "2025-03-05"
+tag: "dft"
+---
+
+## Choosing DFT Functionals
+
+Density Functional Theory (DFT) is the backbone of modern quantum chemistry, but with hundreds of functionals available, choosing the right one can be overwhelming.
+
+## Quick Recommendations
+
+For most quantum chemistry calculations:
+
+- **General purpose**: ωB97X-D or M06-2X
+- **Large systems**: B3LYP-D3 or PBE0-D3  
+- **Transition metals**: M06 or TPSS
+- **Weak interactions**: ωB97X-D or B97-D3
+
+## Understanding Functional Types
+
+**GGA (Generalized Gradient Approximation)**
+- Examples: PBE, BP86, BLYP
+- Good for: Bulk properties, geometry optimization
+- Fast but less accurate for energies
+
+**Hybrid Functionals**
+- Examples: B3LYP, PBE0, M06-2X
+- Include exact exchange from Hartree-Fock
+- Better for energetics and barrier heights
+
+**Range-Separated Hybrids**
+- Examples: ωB97X-D, CAM-B3LYP
+- Variable exact exchange with distance
+- Excellent for charge transfer and excited states
+
+## Dispersion Corrections
+
+Always include dispersion corrections for:
+- Weak interactions
+- Large molecular systems
+- π-π stacking
+- Van der Waals complexes
+
+Popular schemes: D3, D4, or built-in corrections.
+
+## Basis Set Considerations
+
+- **Small molecules**: def2-TZVP or 6-311+G(d,p)
+- **Large systems**: def2-SVP or 6-31+G(d,p)
+- **High accuracy**: def2-QZVP or cc-pVTZ
+
+## Practical Tips
+
+1. **Start simple**: B3LYP-D3/def2-SVP for initial studies
+2. **Validate**: Compare with experiment or high-level methods
+3. **Be consistent**: Use same functional/basis throughout study
+4. **Consider cost**: Balance accuracy with computational resources
+
+## Common Pitfalls
+
+- Using B3LYP without dispersion correction
+- Mixing functionals between geometry and energy
+- Ignoring basis set superposition error (BSSE)
+- Over-relying on default functionals
+
+Remember: The best functional depends on your specific system and properties of interest.
